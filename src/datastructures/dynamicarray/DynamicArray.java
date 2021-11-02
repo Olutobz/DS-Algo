@@ -59,5 +59,20 @@ public class DynamicArray<T> {
         len = 0;
     }
 
+    public void add(T elem) {
+        // Check if we need to resize
+        if (len + 1 >= capacity) {
+            if (capacity == 0) capacity = 1;
+            else capacity *= 2;
+            T[] new_arr = (T[]) new Object[capacity];
+            for (int i = 0; i < len; i++) {
+                // arrays may have extra nulls padded
+                new_arr[i] = arr[i];
+            }
+            arr = new_arr;
+        }
+        arr[len++] = elem;
+    }
+
 
 }
