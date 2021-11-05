@@ -1,5 +1,7 @@
 package datastructures.dynamicarray;
 
+import java.util.Iterator;
+
 /**
  * A generic dynamic array implementation
  *
@@ -15,7 +17,7 @@ public class DynamicArray<T> {
     private int len = 0;
 
     // The actual array size
-    private int capacity = 0;
+    private int capacity;
 
     public DynamicArray() {
         this(16);
@@ -92,7 +94,8 @@ public class DynamicArray<T> {
         T data = arr[rm_index];
         T[] new_arr = (T[]) new Object[len - 1];
         for (int i = 0, j = 0; i < len; i++, j++) {
-            if (i == rm_index) j--; // skips over rm_index
+            // skips over rm_index
+            if (i == rm_index) j--;
             else new_arr[j] = arr[i];
         }
         arr = new_arr;
@@ -111,4 +114,41 @@ public class DynamicArray<T> {
         return -1;
     }
 
+    public boolean contains(Object obj) {
+        return indexOf(obj) != -1;
+
+    }
+
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < len;
+            }
+
+            @Override
+            public T next() {
+                return arr[index++];
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
+
+    @Override
+    public String toString() {
+        if (len == 0) return "[]";
+        else {
+            StringBuilder sb = new StringBuilder(len).append("[");
+            for (int i = 0; i < len; i++) {
+                sb.append(arr[i]).append(", ");
+            }
+            return sb.append("]").toString();
+        }
+    }
 }
