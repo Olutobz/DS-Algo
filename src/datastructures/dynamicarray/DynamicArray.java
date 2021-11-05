@@ -3,15 +3,17 @@ package datastructures.dynamicarray;
 /**
  * A generic dynamic array implementation
  *
- * @author Olutoba Onikoyi
+ * @author Olutoba Onikoyi, damexxey94@gmail.com
  * @since 02/11/2021
  */
 
 public class DynamicArray<T> {
 
     private T[] arr;
-    // The length user think the array is
+
+    // The original size before expansion
     private int len = 0;
+
     // The actual array size
     private int capacity = 0;
 
@@ -26,6 +28,9 @@ public class DynamicArray<T> {
         arr = (T[]) new Object[capacity];
     }
 
+    /**
+     * This returns the length of the array
+     */
     public int size() {
         return len;
     }
@@ -63,16 +68,47 @@ public class DynamicArray<T> {
         // Check if we need to resize
         if (len + 1 >= capacity) {
             if (capacity == 0) capacity = 1;
-            else capacity *= 2;
+            else capacity *= 2; // double the size
             T[] new_arr = (T[]) new Object[capacity];
             for (int i = 0; i < len; i++) {
-                // arrays may have extra nulls padded
                 new_arr[i] = arr[i];
             }
+            // arrays may have extra nulls padded
             arr = new_arr;
         }
         arr[len++] = elem;
     }
 
+    public boolean remove(Object obj) {
+        int index = indexOf(obj);
+        if (index == -1) return false;
+        removeAt(index);
+        return true;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+        if (rm_index < 0 || rm_index >= len) throw new IndexOutOfBoundsException();
+        T data = arr[rm_index];
+        T[] new_arr = (T[]) new Object[len - 1];
+        for (int i = 0, j = 0; i < len; i++, j++) {
+            if (i == rm_index) j--; // skips over rm_index
+            else new_arr[j] = arr[i];
+        }
+        arr = new_arr;
+        capacity = --len;
+        return data;
+    }
+
+    public int indexOf(Object obj) {
+        for (int i = 0; i < len; i++) {
+            if (obj == null) {
+                if (arr[i] == null) return i;
+            } else {
+                if (obj.equals(arr[i])) return i;
+            }
+        }
+        return -1;
+    }
 
 }
