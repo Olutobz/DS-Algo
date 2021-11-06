@@ -3,9 +3,9 @@ package datastructures.dynamicarray;
 import java.util.Arrays;
 
 /**
- * A generic dynamic array implementation
+ * An Integer array implementation
  *
- * @author Olutoba Onikoyi, damexxey94@gmail.com
+ * @author Damola Olutoba Onikoyi, damexxey94@gmail.com
  * @since 05/11/2021
  */
 public class IntArray {
@@ -38,6 +38,28 @@ public class IntArray {
         capacity = len = arr.length;
     }
 
+    public static void main(String[] args) {
+        IntArray intArray = new IntArray(50);
+        intArray.add(5);
+        intArray.add(14);
+        intArray.add(-2);
+        intArray.add(75);
+        intArray.add(121);
+        intArray.add(12);
+
+        intArray.sort(); // [-2,5,12,14,75,121]
+        System.out.println("Does the array have empty contents?: " + intArray.isEmpty());
+
+        for (int i = 0; i < intArray.size(); i++) {
+            System.out.print(intArray.get(i) + " ");
+        }
+        System.out.println();
+        intArray.reverse();
+        for (int i = 0; i < intArray.size(); i++) {
+            System.out.print(intArray.get(i) + " ");
+        }
+    }
+
     public int size() {
         return len;
     }
@@ -65,6 +87,38 @@ public class IntArray {
             arr = Arrays.copyOf(arr, capacity);
         }
         arr[len++] = elem;
+    }
+
+    // search and remove an element if it is found in the array
+    // it takes O(n) time
+    public boolean remove(int elem) {
+        for (int i = 0; i < len; i++) {
+            if (arr[i] == elem) {
+                removeAt(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void removeAt(int rm_index) {
+        System.arraycopy(arr, rm_index + 1, arr, rm_index, len - rm_index - 1);
+        --len;
+        --capacity;
+    }
+
+    // Reverse the contents of the array
+    public void reverse() {
+        for (int i = 0; i < len / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[len - i - 1];
+            arr[len - i - 1] = temp;
+        }
+
+    }
+
+    public void sort() {
+        Arrays.sort(arr, 0, len);
     }
 
 }
