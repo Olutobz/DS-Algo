@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class IntArray {
 
     // 1 * (2^3) = 8 -> 00001000 in binary form
-    private static final int DEFAULT_SIZE = 1 << 3;
+    private static final int DEFAULT_INITIAL_CAPACITY = 1 << 3;
 
     public int[] arr;
     public int len = 0;
@@ -19,7 +19,7 @@ public class IntArray {
 
     // Initialize the array with a default capacity
     public IntArray() {
-        this(DEFAULT_SIZE);
+        this(DEFAULT_INITIAL_CAPACITY);
     }
 
     // Initialize the array with specified capacity
