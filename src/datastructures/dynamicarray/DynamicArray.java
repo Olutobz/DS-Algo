@@ -9,6 +9,7 @@ import java.util.Iterator;
  * @since 02/11/2021
  */
 
+@SuppressWarnings("ALL")
 public class DynamicArray<T> {
 
     private T[] arr;
