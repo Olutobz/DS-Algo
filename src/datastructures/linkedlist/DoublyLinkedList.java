@@ -15,6 +15,18 @@ public class DoublyLinkedList<T> {
         return size() == 0;
     }
 
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+        if (isEmpty()) throw new RuntimeException("Empty list");
+        return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+        if (isEmpty()) throw new RuntimeException("Empty list");
+        return tail.data;
+    }
+
     // Internal node class to represent data
     private static class Node<T> {
         private T data;
