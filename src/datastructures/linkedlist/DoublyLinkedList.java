@@ -44,4 +44,29 @@ public class DoublyLinkedList<T> {
         }
     }
 
+
+    public java.util.Iterator<T> iterator() {
+        return new java.util.Iterator<T>() {
+            private Node<T> trav = head;
+
+            @Override
+            public boolean hasNext() {
+                return trav != null;
+            }
+
+            @Override
+            public T next() {
+                T data = trav.data;
+                trav = trav.next;
+                return data;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
+
+
 }
