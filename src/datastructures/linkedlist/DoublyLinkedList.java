@@ -27,24 +27,6 @@ public class DoublyLinkedList<T> {
         return tail.data;
     }
 
-    // Internal node class to represent data
-    private static class Node<T> {
-        private T data;
-        private Node<T> prev, next;
-
-        public Node(T data, Node<T> prev, Node<T> next) {
-            this.data = data;
-            this.prev = prev;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return data.toString();
-        }
-    }
-
-
     public java.util.Iterator<T> iterator() {
         return new java.util.Iterator<T>() {
             private Node<T> trav = head;
@@ -68,5 +50,34 @@ public class DoublyLinkedList<T> {
         };
     }
 
+    // Empty this linked list, O(n)
+    public void clear() {
+        Node<T> trav = head;
+        while (trav != null) {
+            Node<T> next = trav.next;
+            trav.prev = trav.next = null;
+            trav.data = null;
+            trav = next;
+        }
+        head = tail = trav = null;
+        size = 0;
+    }
+
+    // Internal node class to represent data
+    private static class Node<T> {
+        private T data;
+        private Node<T> prev, next;
+
+        public Node(T data, Node<T> prev, Node<T> next) {
+            this.data = data;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
+        }
+    }
 
 }
