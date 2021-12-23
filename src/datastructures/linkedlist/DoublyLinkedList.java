@@ -1,5 +1,7 @@
 package datastructures.linkedlist;
 
+import java.util.Iterator;
+
 public class DoublyLinkedList<T> {
     private int size = 0;
     private Node<T> head = null;
@@ -27,8 +29,8 @@ public class DoublyLinkedList<T> {
         return tail.data;
     }
 
-    public java.util.Iterator<T> iterator() {
-        return new java.util.Iterator<T>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
             private Node<T> trav = head;
 
             @Override
@@ -59,7 +61,7 @@ public class DoublyLinkedList<T> {
             trav.data = null;
             trav = next;
         }
-        head = tail = trav = null;
+        head = tail = null;
         size = 0;
     }
 
