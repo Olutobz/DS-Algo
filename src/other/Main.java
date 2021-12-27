@@ -10,16 +10,19 @@ public class Main {
         array.insert(20);
         array.insert(40);
         array.insert(14);
+        array.insert(85);
         int index = array.indexOf(15);
         System.out.println("The index of 15 is: " + index);
-        int data = array.removeAt(1);
-        System.out.println("Removed " + data + " at index 1");
-        System.out.println("Has removed number 14 from the array: " + array.remove(14));
+        int data = array.removeAt(4);
+        System.out.println("Removed " + data + " at index 4");
+        System.out.println("The new array values are: " + Arrays.toString(array.arr));
+        System.out.println("Has removed number 14 from the array?: " + array.remove(14));
         System.out.println("The new array values are: " + Arrays.toString(array.arr));
 
         printArrays();
         test(new int[]{1, 2, 3}, new String[]{"google, meta, tesla, twitter"});
-        greet(new String[]{"Olutoba, Damilola, Sarah"});
+        greet(new String[]{"Onikoyi, Damola, Olutoba"});
+
 
     }
 
@@ -53,15 +56,15 @@ public class Main {
     // Time -> O(n)
     // Space -> O(1)
     public static void greet(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            System.out.println("Hi " + names[i]);
+        for (String name : names) {
+            System.out.println("Hi " + name);
         }
     }
 
     // An implementation of a custom dynamic integer array
     static class Array {
         private int[] arr;
-        private int index = 0;
+        private int counter = 0;
         // The actual array size
         private int capacity;
 
@@ -78,16 +81,14 @@ public class Main {
         // Space -> O(n)
         public void insert(int item) {
             // check if we need to resize the array
-            if (index + 1 >= capacity) {
+            if (counter + 1 >= capacity) {
                 if (capacity == 0) capacity = 1;
                 else capacity *= 2; // double the size
                 int[] new_arr = new int[capacity];
-                for (int i = 0; i < index; i++) {
-                    new_arr[i] = arr[i];
-                }
+                if (counter >= 0) System.arraycopy(arr, 0, new_arr, 0, counter);
                 arr = new_arr; // may have extra nulls
             }
-            arr[index++] = item;
+            arr[counter++] = item;
             System.out.println(Arrays.toString(arr));
         }
 
@@ -103,11 +104,10 @@ public class Main {
         // Time -> O(n)
         // Space -> O(n)
         public int removeAt(int rm_index) {
-            if (rm_index < 0 || rm_index > capacity) throw new IndexOutOfBoundsException();
+            if (rm_index < 0 || rm_index > counter) throw new IndexOutOfBoundsException();
             int data = arr[rm_index];
             int[] new_arr = new int[arr.length - 1];
             for (int i = 0, j = 0; i < arr.length; i++, j++) {
-                new_arr[j] = arr[i];
                 if (i == rm_index) j--;
                 else new_arr[j] = arr[i];
             }
@@ -118,7 +118,7 @@ public class Main {
         // Time -> O(n)
         // Space -> O(1)
         public int indexOf(int item) {
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < counter; i++) {
                 if (item == arr[i]) return i;
             }
             return -1;
