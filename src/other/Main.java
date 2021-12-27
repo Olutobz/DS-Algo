@@ -1,9 +1,18 @@
 package other;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        test(new int[]{1, 2, 3}, new String[]{"google, meta, amazon, twitter, Delivery Hero"});
+        arrays();
+        test(new int[]{1, 2, 3}, new String[]{"google, meta, amazon"});
+        greet(new String[]{"Olutoba, Damilola, Sarah"});
+    }
+
+    private static void arrays() {
+        int[] numbers = {10 , 20 , 30};
+        System.out.println(Arrays.toString(numbers));
     }
 
     public static void test(int[] numbers, String[] names) {
@@ -24,6 +33,14 @@ public class Main {
                 System.out.println(first + ", " + second);
             }
         }
-
     }
+
+    // O(1) space
+    public static void greet(String[] names) {
+        for (int i = 0; i < names.length; i++) {
+            System.out.println("Hi " + names[i]);
+        }
+    }
+
+
 }
