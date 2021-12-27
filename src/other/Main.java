@@ -60,10 +60,10 @@ public class Main {
 
     // An implementation of a custom dynamic integer array
     static class Array {
-        int[] arr;
-        int index = 0;
+        private int[] arr;
+        private int index = 0;
         // The actual array size
-        int capacity;
+        private int capacity;
 
         public Array() {
             this(3);
