@@ -3,12 +3,12 @@ package other;
 
 import java.util.NoSuchElementException;
 
-public class LinkedList {
+public class SinglyLinkedList {
     private Node head;
     private Node tail;
 
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        SinglyLinkedList list = new SinglyLinkedList();
         list.addFirst(10);
         list.addLast(20);
         list.addFirst(14);

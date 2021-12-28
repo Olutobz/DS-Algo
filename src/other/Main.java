@@ -23,7 +23,6 @@ public class Main {
         test(new int[]{1, 2, 3}, new String[]{"google, meta, tesla, twitter"});
         greet(new String[]{"Onikoyi, Damola, Olutoba"});
 
-
     }
 
     // Time -> O(1)
