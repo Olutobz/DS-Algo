@@ -16,7 +16,7 @@ public class LinkedList {
         System.out.println(list.contains(14));
         int index = list.indexOf(40);
         System.out.println("The index of 40 is: " + index);
-        System.out.println(list.isEmpty());
+        System.out.println("Is the linklist empty?: " + list.isEmpty());
         list.removeFirst();
         list.removeLast();
     }
@@ -47,6 +47,7 @@ public class LinkedList {
         }
     }
 
+    // O(1)
     public void removeFirst() {
         if (isEmpty()) throw new NoSuchElementException();
         if (head == tail) {
@@ -58,6 +59,7 @@ public class LinkedList {
         head = pointer;
     }
 
+    // O(n)
     public void removeLast() {
         if (isEmpty()) throw new NoSuchElementException();
         if (head == tail) {
@@ -70,6 +72,7 @@ public class LinkedList {
         }
     }
 
+    // O(n)
     private Node getPreviousNode(Node node) {
         Node current = head;
         while (current != null) {
@@ -103,11 +106,6 @@ public class LinkedList {
 
         public Node(int data) {
             this.data = data;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(data);
         }
     }
 
