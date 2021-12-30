@@ -1,6 +1,7 @@
 package datastructures.linkedlist;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DoublyLinkedList<T> {
     private int size = 0;
@@ -19,13 +20,13 @@ public class DoublyLinkedList<T> {
 
     // Check the value of the first node if it exists, O(1)
     public T peekFirst() {
-        if (isEmpty()) throw new RuntimeException("Empty list");
+        if (isEmpty()) throw new NoSuchElementException("Empty list");
         return head.data;
     }
 
     // Check the value of the last node if it exists, O(1)
     public T peekLast() {
-        if (isEmpty()) throw new RuntimeException("Empty list");
+        if (isEmpty()) throw new NoSuchElementException("Empty list");
         return tail.data;
     }
 
