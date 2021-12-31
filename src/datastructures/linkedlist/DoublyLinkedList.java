@@ -30,6 +30,7 @@ public class DoublyLinkedList<T> {
         return tail.data;
     }
 
+
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private Node<T> trav = head;
@@ -44,6 +45,28 @@ public class DoublyLinkedList<T> {
                 T data = trav.data;
                 trav = trav.next;
                 return data;
+            }
+
+            // Add a node to the tail of the linked list, O(1)
+            public void addLast(T elem) {
+                if (isEmpty()) {
+                    head = tail = new Node<>(elem, null, null);
+                } else {
+                    tail.next = new Node<>(elem, tail, null);
+                    tail = tail.next;
+                }
+                size++;
+            }
+
+            // Add an element to the beginning of this linked list, O(1)
+            public void addFirst(T elem) {
+                if (isEmpty()) {
+                    head = tail = new Node<>(elem, null, null);
+                } else {
+                    head.prev = new Node<>(elem, null, head);
+                    head = head.prev;
+                }
+                size++;
             }
 
             @Override
