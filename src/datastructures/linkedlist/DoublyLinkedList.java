@@ -89,23 +89,6 @@ public class DoublyLinkedList<T> {
         size = 0;
     }
 
-    // Internal node class to represent data
-    private static class Node<T> {
-        private T data;
-        private Node<T> prev, next;
-
-        public Node(T data, Node<T> prev, Node<T> next) {
-            this.data = data;
-            this.prev = prev;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return data.toString();
-        }
-    }
-
     // Remove the first value at the head of the linked list, O(1)
     public T removeFirst() {
         // Can't remove data from an empty list
@@ -127,5 +110,44 @@ public class DoublyLinkedList<T> {
         return data;
     }
 
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+        int index = 0;
+        Node<T> trav = head;
+
+        // Support searching for null
+        if (obj == null) {
+            for (; trav != null; trav = trav.next, index++) {
+                if (trav.data == null) {
+                    return index;
+                }
+            }
+            // Search for non-null object
+        } else {
+            for (; trav != null; trav = trav.next, index++) {
+                if (obj.equals(trav.data)) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    // Internal node class to represent data
+    private static class Node<T> {
+        private T data;
+        private Node<T> prev, next;
+
+        public Node(T data, Node<T> prev, Node<T> next) {
+            this.data = data;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
+        }
+    }
 
 }
