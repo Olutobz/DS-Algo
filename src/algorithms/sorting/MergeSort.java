@@ -21,6 +21,7 @@ public class MergeSort {
         System.out.print(Arrays.toString(nums));
     }
 
+    // TC -> O(NLogN), SC -> O(N)
     public static void mergeSort(int[] nums) {
         int len = nums.length;
 
