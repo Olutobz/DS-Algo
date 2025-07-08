@@ -32,15 +32,19 @@ public class Main {
 
     public static void test(int[] numbers, String[] names) {
         System.out.println(numbers[0]);
+        System.out.print("Numbers are: ");
         for (int number : numbers) {
-            System.out.print(number + " ");
+            System.out.print(number + ", ");
         }
+
         System.out.println();
 
+        System.out.print("Names are: ");
         for (String name : names) {
-            System.out.println(name);
+            System.out.print(name + ", ");
         }
 
+        System.out.println();
         for (int first : numbers) {
             for (int second : numbers) {
                 System.out.println(first + ", " + second);
@@ -55,7 +59,6 @@ public class Main {
         }
     }
 
-    // An implementation of a custom dynamic integer array
     static class CustomArray {
         private int[] arr;
         private int counter = 0;
@@ -73,10 +76,9 @@ public class Main {
 
         // TC -> O(n), SC -> O(n)
         public void insert(int item) {
-            // check if we need to resize the array
             if (counter + 1 >= capacity) {
                 if (capacity == 0) capacity = 1;
-                else capacity *= 2; // double the size
+                else capacity *= 2;
                 int[] new_arr = new int[capacity];
                 if (counter >= 0) {
                     System.arraycopy(arr, 0, new_arr, 0, counter);
