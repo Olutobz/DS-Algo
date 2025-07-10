@@ -16,6 +16,7 @@ public class MergeSort {
         System.out.print("Before: ");
         System.out.print(Arrays.toString(nums));
         System.out.println();
+
         mergeSort(nums);
         System.out.print("Now: ");
         System.out.print(Arrays.toString(nums));
@@ -23,21 +24,14 @@ public class MergeSort {
 
     // TC -> O(NLogN), SC -> O(N)
     public static void mergeSort(int[] nums) {
-        int len = nums.length;
+        if (nums.length <= 1) return;
 
-        // Base case is when a single element (which is already sorted)
-        if (len <= 1) return;
-
-        int mid = len / 2;
+        int mid = nums.length / 2;
         int[] leftArr = new int[mid];
-        int[] rightArr = new int[len - mid];
+        int[] rightArr = new int[nums.length - mid];
 
-        for (int i = 0; i < mid; i++) {
-            leftArr[i] = nums[i];
-        }
-        for (int i = mid; i < len; i++) {
-            rightArr[i - mid] = nums[i];
-        }
+        System.arraycopy(nums, 0, leftArr, 0, mid);
+        System.arraycopy(nums, mid, rightArr, 0, nums.length - mid);
 
         mergeSort(leftArr);
         mergeSort(rightArr);
@@ -45,23 +39,23 @@ public class MergeSort {
         merge(nums, leftArr, rightArr);
     }
 
-    public static void merge(int[] nums, int[] leftHalf, int[] rightHalf) {
+    public static void merge(int[] nums, int[] leftArr, int[] rightArr) {
         int i = 0, j = 0, k = 0;
-        while (i < leftHalf.length && j < rightHalf.length) {
-            if (leftHalf[i] <= rightHalf[j]) {
-                nums[k++] = leftHalf[i++];
+
+        while (i < leftArr.length && j < rightArr.length) {
+            if (leftArr[i] <= rightArr[j]) {
+                nums[k++] = leftArr[i++];
             } else {
-                nums[k++] = rightHalf[j++];
+                nums[k++] = rightArr[j++];
             }
         }
 
-        while (i < leftHalf.length) {
-            nums[k++] = leftHalf[i++];
+        while (i < leftArr.length) {
+            nums[k++] = leftArr[i++];
         }
 
-        while (j < rightHalf.length) {
-            nums[k++] = rightHalf[j++];
+        while (j < rightArr.length) {
+            nums[k++] = rightArr[j++];
         }
-
     }
 }
